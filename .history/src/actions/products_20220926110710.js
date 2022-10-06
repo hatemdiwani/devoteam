@@ -44,6 +44,6 @@ export const updateProductForm = (id, data) => (dispatch, getState, {history}) =
 
 export const createProductForm = (data) => (dispatch, getState, {history}) => {
   dispatch(createProduct(data));
-  console.log(getState.);
+
   //history.push('/');
 }

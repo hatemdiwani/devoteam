@@ -64,14 +64,9 @@ const ProductForm = (props) => {
         setIsInvalidName(!isNameValid(value))
     }
 
-    const handleCategoryChanged =  target => {
+    const handleCategoryChanged =  value => {
         setCategories(getMultiSelected(target));
          setIsInvalidCategory(isCategoriesValid(target)) 
-    }
-
-    const handleExpirationDateChanged = value => {
-        setIsInvalidExpiration(!isExpiredAfter30Day(value));
-         setExpirationDate(value) 
     }
 
     return (
@@ -123,7 +118,7 @@ const ProductForm = (props) => {
                     id="categories"
                     multiple
                     value={categories}
-                    onChange={({ target }) => {handleCategoryChanged(target)}}
+                    onChange={({ target }) => {}}
                 >
                     {props.categories.map(({ id, name }) => (
                         <option key={id} value={id}>{name}</option>
@@ -145,7 +140,7 @@ const ProductForm = (props) => {
                     name="expirationDate"
                     id="expirationDate"
                     value={expirationDate}
-                    onChange={({ target }) => { handleExpirationDateChanged(target.value)}}
+                    onChange={({ target }) => { setIsInvalidExpiration(!isExpiredAfter30Day(target.value)); setExpirationDate(target.value) }}
                 />
                 <FormFeedback>If a product has an expiration date it must expire not less than 30 days since
                     now</FormFeedback>

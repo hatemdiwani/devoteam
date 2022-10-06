@@ -70,8 +70,7 @@ const ProductForm = (props) => {
     }
 
     const handleExpirationDateChanged = value => {
-        setIsInvalidExpiration(!isExpiredAfter30Day(value));
-         setExpirationDate(value) 
+        setIsInvalidExpiration(!isExpiredAfter30Day(target.value)); setExpirationDate(target.value) 
     }
 
     return (
@@ -145,7 +144,7 @@ const ProductForm = (props) => {
                     name="expirationDate"
                     id="expirationDate"
                     value={expirationDate}
-                    onChange={({ target }) => { handleExpirationDateChanged(target.value)}}
+                    onChange={({ target }) => { }}
                 />
                 <FormFeedback>If a product has an expiration date it must expire not less than 30 days since
                     now</FormFeedback>

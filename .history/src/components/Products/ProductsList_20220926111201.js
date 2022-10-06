@@ -8,9 +8,7 @@ const ProductList = ({ products, onDelete }) => {
   const productsGroups = chunk(products, 3)
 
 
-  useEffect(() => {
- console.log();
-  }, [])
+
   
 
   return (

@@ -26,18 +26,18 @@ const ProductForm = (props) => {
             valid = false
         }
 
-        if (!isCategoriesValid(categories)) {
+        if(!isCategoriesValid(categories)){
             setIsInvalidCategory(true)
             valid = false
         }
 
-        if (expirationDate !== '' && !isExpiredAfter30Day(expirationDate)) {
+        if(expirationDate !== '' && !isExpiredAfter30Day(expirationDate) ){
             setIsInvalidExpiration(true)
             valid = false
         }
 
-        if (!valid)
-            return
+        if(!valid)
+        return 
         props.onSave({
             name,
             brand,
@@ -59,20 +59,10 @@ const ProductForm = (props) => {
     }, [rating])
 
 
-    const handleNameChanged = value => {
-        setName(value);
-        setIsInvalidName(!isNameValid(value))
-    }
-
-    const handleCategoryChanged =  target => {
-        setCategories(getMultiSelected(target));
-         setIsInvalidCategory(isCategoriesValid(target)) 
-    }
-
-    const handleExpirationDateChanged = value => {
-        setIsInvalidExpiration(!isExpiredAfter30Day(value));
-         setExpirationDate(value) 
-    }
+const handleNameChanged = value => {
+    setName(value); 
+    setIsInvalidName(!isNameValid(value)) 
+}
 
     return (
         <Form onSubmit={onSubmit}>
@@ -85,7 +75,7 @@ const ProductForm = (props) => {
                     id='name'
                     placeholder='Name'
                     value={name}
-                    onChange={({ target }) => { handleNameChanged(target.value) }}
+                    onChange={({ target }) => { handle }}
                 />
                 <FormFeedback>Name is required, the length must not be greater than 200</FormFeedback>
             </FormGroup>
@@ -123,7 +113,7 @@ const ProductForm = (props) => {
                     id="categories"
                     multiple
                     value={categories}
-                    onChange={({ target }) => {handleCategoryChanged(target)}}
+                    onChange={({ target }) => { setCategories(getMultiSelected(target)); setIsInvalidCategory(isCategoriesValid(target)) }}
                 >
                     {props.categories.map(({ id, name }) => (
                         <option key={id} value={id}>{name}</option>
@@ -145,7 +135,7 @@ const ProductForm = (props) => {
                     name="expirationDate"
                     id="expirationDate"
                     value={expirationDate}
-                    onChange={({ target }) => { handleExpirationDateChanged(target.value)}}
+                    onChange={({ target }) => { setIsInvalidExpiration(!isExpiredAfter30Day(target.value)); setExpirationDate(target.value) }}
                 />
                 <FormFeedback>If a product has an expiration date it must expire not less than 30 days since
                     now</FormFeedback>
